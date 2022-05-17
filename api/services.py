@@ -17,7 +17,7 @@ class TextSender:
 
     def send(self):
 
-        if not self.to_phone_number:
+        if self.to_phone_number:
             api = KavenegarAPI(os.environ.get('API_KEY'))
             params = {
                 "receptor": self.to_phone_number,
@@ -26,7 +26,7 @@ class TextSender:
             api.sms_send(params)
             print('successfully sent the sms.')
 
-        if not self.to_phone_number:
+        if self.to_email:
             msg = EmailMessage()
             msg['Subject'] = 'Herald app'
             msg['From'] = self.from_email
